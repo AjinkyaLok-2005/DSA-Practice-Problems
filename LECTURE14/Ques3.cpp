@@ -1,9 +1,8 @@
 #include <iostream>
 using namespace std;
 
-class Solution {
-public:
-    long long int binarySearch(int n)
+
+    long long int sqertInteger(int n)
     {
         int s = 0;
         int e = n;
@@ -31,18 +30,29 @@ public:
         return ans;
     }
 
-    int mySqrt(int x) {
-        return binarySearch(x);
-    }
-};
+double morePrecision(int n, int precision, int tempSol)
+{
+    double factor = 1;
+    double ans = tempSol;
+    for(int i = 0; i <= 3; i++)
+    {
+        factor = factor / 10;
+        for(double j = ans; j*j < n; j = j+factor)
+        {
+            ans = j;
+        }
+    } 
+    return ans;
+}
 
-int main() {
-    Solution solution;
-    int num;
-    cout << "Enter a number: ";
-    cin >> num;
+int main() 
+{
+    int n;
+    cout << "Enter a number: " << endl;
+    cin >> n;
 
-    cout << "Square root (integer part) of " << num << " is: " << solution.mySqrt(num) << endl;
+    int tempSol = sqertInteger(n);
+    cout << "Answer is " << morePrecision(n, 3, tempSol);
 
     return 0;
 }
