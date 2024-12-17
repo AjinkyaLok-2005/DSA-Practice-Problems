@@ -40,11 +40,12 @@ int allocateBooks(vector<int> arr, int s, int e, int n, int m, int ans)
 
     if(isPossible(arr, n, m, mid))
     {
-        return allocateBooks(arr, s, mid-1, n, m, mid);
+        ans = mid;
+        return allocateBooks(arr, s, mid-1, n, m, ans);
     }
     else
     {
-        return allocateBooks(arr, mid+1, e, n, m, mid);
+        return allocateBooks(arr, mid+1, e, n, m, ans);
     }
 }
 
@@ -67,9 +68,9 @@ int ans(vector<int> arr, int n, int m)
 
 int main()
 {
-    vector<int> arr = {10, 20, 30, 40}; // Array of book pages
+    vector<int> arr = {5, 17, 100, 11}; // Array of book pages
     int n = arr.size();                 // Number of books
-    int m = 2;  
+    int m = 4;  
 
     int final_ans = ans(arr, n, m);
 
