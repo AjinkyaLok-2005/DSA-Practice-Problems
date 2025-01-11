@@ -37,8 +37,8 @@ void reverse(Node * &head, Node * curr, Node * prev)
         return;
     }
     forward = curr -> next;
-    curr -> next = prev;
     reverse(head, forward, curr);
+    curr -> next = prev;
 }
 
 Node * reverseLinkedList(Node * &head)
