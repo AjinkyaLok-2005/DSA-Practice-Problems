@@ -54,6 +54,11 @@ void print(Node * head)
 
 Node * removeDuplicates(Node * & head)
 {
+    if(head == NULL)
+    {
+        return NULL;
+    }
+    
     Node * curr = head;
     while(curr != NULL)
     {
