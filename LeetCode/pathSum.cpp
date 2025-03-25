@@ -75,14 +75,14 @@ void levelOrderTraversal(Node * root)
 }
 
 
-bool solve(TreeNode * root, int sum, int targetSum)
+bool solve(Node * root, int sum, int targetSum)
 {
     //base case
     if(!root)
     {
         return false;
     }
-    sum += root -> val;
+    sum += root -> data;
 
     if(!root->left && !root->right){
         return sum == targetSum;
@@ -92,7 +92,7 @@ bool solve(TreeNode * root, int sum, int targetSum)
 
 }
 
-bool hasPathSum(TreeNode* root, int targetSum) 
+bool hasPathSum(Node* root, int targetSum) 
 {
     int sum = 0;
     return solve(root, sum, targetSum);
@@ -110,7 +110,7 @@ int main()
     cout << "Level Order Traversal:" << endl;
     levelOrderTraversal(root);
 
-    bool result = hasPath(root);
+    bool result = hasPathSum(root, 14);
     if(result)
     {
         cout << "Target Sum found: " << endl;
