@@ -99,7 +99,8 @@ void inorder(Node * root, vector<int> & in)
 bool twoSumInBST(Node* root, int target) {
 	//Write your code here
     vector<int> inorderVal;
-
+    inorder(root, inorderVal);
+    
     int i = 0;
     int j = inorderVal.size() - 1;
 
