@@ -84,7 +84,7 @@ void levelOrderTraversal(Node * root)
     }
 }
 
-bool isBST(Node* root, int min, int max)
+bool isBST(Node* root, long long min, long long max)
 {
     //base case
     if(root == NULL)
@@ -92,7 +92,15 @@ bool isBST(Node* root, int min, int max)
         return true;
     }
 
-    if(root -> data >= min && root -> data <= max)
+//     A Binary Search Tree (BST), by standard definition, requires that:
+
+// All nodes in the left subtree must have values strictly less than the current node’s value.
+
+// All nodes in the right subtree must have values strictly greater than the current node’s value.
+
+//Hence <= or >= will not work only < or > 
+
+    if(root -> data > min && root -> data < max)
     {
         bool left = isBST(root -> left, min, root -> data);
         bool right = isBST(root -> right, root -> data, max);
@@ -107,7 +115,9 @@ bool isBST(Node* root, int min, int max)
 
 bool validateBST(Node * root)
 {
-    return isBST(root, INT_MIN, INT_MAX);
+    // Also, to avoid potential integer overflow issues when using INT_MIN and INT_MAX, it's better to use long long as the range bounds.
+    return isBST(root, LLONG_MIN, LLONG_MAX);
+
 }
 
 Node * buildTree(Node * root)
