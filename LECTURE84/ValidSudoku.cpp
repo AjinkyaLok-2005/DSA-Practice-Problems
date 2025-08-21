@@ -99,9 +99,9 @@ int main() {
     
     cout << "Invalid Sudoku (row) test: " << (!solution.isValidSudoku(invalidRowBoard) ? "PASS" : "FAIL") << endl;
     
-    // Test Case 3: Invalid Sudoku (duplicate in 3x3 box)
+    // Test Case 3: Invalid Sudoku (duplicate in 3x3 box) - CORRECTED
     vector<vector<char>> invalidBoxBoard = {
-        {'5','3','.','.','7','.','.','.','.'},
+        {'5','3','5','.','7','.','.','.','.'},  // Duplicate '5' at (0,2) - same top-left box
         {'6','.','.','1','9','5','.','.','.'},
         {'.','9','8','.','.','.','.','6','.'},
         {'8','.','.','.','6','.','.','.','3'},
@@ -109,7 +109,7 @@ int main() {
         {'7','.','.','.','2','.','.','.','6'},
         {'.','6','.','.','.','.','2','8','.'},
         {'.','.','.','4','1','9','.','.','5'},
-        {'.','.','5','.','8','.','.','7','9'}  // Duplicate '5' in top-left 3x3 box
+        {'.','.','.','.','8','.','.','7','9'}
     };
     
     cout << "Invalid Sudoku (box) test: " << (!solution.isValidSudoku(invalidBoxBoard) ? "PASS" : "FAIL") << endl;
