@@ -29,12 +29,12 @@ public:
 
 int main() {
     MyCalendarThree obj;
-    cout << obj.book(10, 20) << endl; // returns 1
-    cout << obj.book(50, 60) << endl; // returns 1
-    cout << obj.book(10, 40) << endl; // returns 2
-    cout << obj.book(5, 15) << endl;  // returns 3
-    cout << obj.book(5, 10) << endl;  // returns 3
-    cout << obj.book(25, 55) << endl; // returns 3
+    cout << obj.book(10, 20) << endl; 
+    cout << obj.book(50, 60) << endl; 
+    cout << obj.book(10, 40) << endl; 
+    cout << obj.book(5, 15) << endl;  
+    cout << obj.book(5, 10) << endl;  
+    cout << obj.book(25, 55) << endl; 
 
     return 0;
 }
