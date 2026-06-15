@@ -54,4 +54,8 @@ int main()
     {
         cout << temp -> val << " ";
         temp = temp -> next;
+    }
+    cout << endl;
+
+    return 0;
 }
