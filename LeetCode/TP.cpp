@@ -1,64 +1,72 @@
-from collections import defultdict, deque
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
 
-class Solution:
+bool cmp(vector<int>& a, vector<int>& b)
+{
+    return a[2] < b[2]; 
+}
 
-    def isCyclisBFS(self, src, visited, adj):
-        parent = {}
-        parent[src] = -1
+void makeSet(vector<int>& parent, vector<int>& rank, int n)
+{
+    for(int i = 0; i < n; i++)
+    {
+        parent[i] = i;
+        rank[i] = 0;
+    }
+}
 
-        visited[src] = True
+int findParent(vector<int>& parent, int node)
+{
+    if(parent[node] == node)
+        return node;
 
-        q = deque()
-        q.append(src)
+    return parent[node] = findParent(parent, parent[node]);
+}
 
-        while q:
-            front = q.popleft()
+void unionSet(int u, int v, vector<int>& parent, vector<int>& rank)
+{
+    u = findParent(parent, u);
+    v = findParent(parent, v);
 
-            for neighbour in adj[front]:
-                if visited[neighbour] and neighbour != parent[front]:
-                    return True
+    if(rank[u] < rank[v])
+    {
+        parent[u] = v;
+    }
+    else if(rank[u] > rank[v])
+    {
+        parent[v] = u;
+    }
+    else
+    {
+        parent[v] = u;
+        rank[u]++;
+    }
+}
 
-                elif not visited[neighbour]:
-                    q.append(neighbour)
-                    visited[neighbour] = True
-                    parent[neighbour] = front
+int mst(vector<vector<int>>& edges, int n)
+{
+    sort(begin(edges), end(edges), cmp);
 
-        return False
+    vector<int> parent(n);
+    vector<int> rank(n);
+    makeSet(parent, rank, n);
 
-    def isCyclicDFS(self, node, parent, visited, adj):
-        visited[node] = True
+    int minWeight = 0;
 
-        for neighbour in adj[node]:
-            if not visited[neighbour]:
-                cycleDetected = self.DFS(neighbour, node, visited, adj)
+    for(int i = 0; i < n; i++)
+    {
+        int u = findParent(parent, edges[i][0]);
+        int v = findparent(parent, edges[i][1]);
+        int wt = edges[i][2];
 
-                if cycleDetected:
-                    return True
+        if(u != v)
+        {
+            minWeight += wt;
+            unionSet(u, v, parent, rank);
+        }
+    }
 
-            elif neighbour != parent:
-                return True
-
-        return False
-
-    def cycleDetection(self, edges, n, m):
-        #adj = defaultdict(list)
-        adj = [[] for _ in range(n)]
-
-        for i in range(m):
-            u = edges[i][0]
-            v = edges[i][1]
-
-            adj[u].append(v)
-            adj[v].append(u)
-
-        visited = [False] * n
-
-        for i in range(n):
-            if not visited[i]:
-                ans = self.isCyclicDFS(i, -1, visited, adj)
-                # ans = self.isCyslicBFS(i, visited, adj)
-
-                if ans:
-                    return "Yes"
-
-        return "No"
+    return minWeight;
+}
