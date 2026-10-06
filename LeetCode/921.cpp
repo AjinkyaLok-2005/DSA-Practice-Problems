@@ -1,3 +1,7 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
 class Solution {
 public:
     int minAddToMakeValid(string s) {
@@ -20,3 +24,18 @@ public:
         return moves + open;
     }
 };
+
+int main() {
+    string s;
+
+    cout << "Enter parentheses string: ";
+    cin >> s;
+
+    Solution obj;
+
+    int result = obj.minAddToMakeValid(s);
+
+    cout << "Minimum additions required: " << result << endl;
+
+    return 0;
+}
