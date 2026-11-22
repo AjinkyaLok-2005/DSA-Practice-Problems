@@ -31,12 +31,11 @@ public:
         {
             if(s[i] == 'b' && s[i+1] == 'a')
             {
-                isCorrect = false;
-                break;
+                return false;
             }
         }
 
-        return isCorrect;
+        return true;
     }
 };
 
